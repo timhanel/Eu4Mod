@@ -1,0 +1,92 @@
+
+german_missions = {
+	slot = 1
+	generic = no
+	ai = yes
+
+	potential = {
+		NOT = { map_setup = map_setup_random }
+		tag = GER
+	}
+	has_country_shield = yes
+
+	rueckbesetzung_des_rheinland = {
+		icon = rueckbesetzung_des_rheinland
+		required_missions = {  }
+		position = 1
+		provinces_to_highlight = {
+			OR = {
+				province_id = 77 #Heidelberg
+				province_id = 70 #Stuttgart
+				province_id = 1876 #Frankfurt
+				province_id = 85 #Köln
+				province_id = 69 #Dortmund
+
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			owns_or_non_sovereign_subject_of = 77
+			owns_or_non_sovereign_subject_of = 70
+			owns_or_non_sovereign_subject_of = 1876
+			owns_or_non_sovereign_subject_of = 85
+			owns_or_non_sovereign_subject_of = 69
+		}
+		effect = {
+			palatinate_area = { 
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = ROOT
+				cede_province = ROOT
+			}
+			north_rhine_area = { 
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = ROOT
+				cede_province = ROOT
+			}
+			lower_rhineland_area = {
+				limit = {
+							NOT = { is_core = ROOT }
+						}
+				add_core = ROOT
+				cede_province = ROOT
+			}
+		}
+	}
+
+	danzig_deutsch = {
+		icon = danzig_deutsch
+		required_missions = { rueckbesetzung_des_rheinland }
+		position = 2
+		provinces_to_highlight = {
+			OR = {
+					province_id = 4746 #Danzig
+				}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+		trigger = {
+			owns_or_non_sovereign_subject_of = 4746
+			
+			}
+		effect = {
+			east_prussia_area = { 
+					limit = {
+						NOT = { is_core = ROOT }
+						NOT = { is_permanent_claim = ROOT }
+					}
+					add_permanent_claim = ROOT
+				}
+			west_prussia_area = { 
+					limit = {
+						NOT = { is_core = ROOT }
+						NOT = { is_permanent_claim = ROOT }
+					}
+					add_permanent_claim = ROOT
+				}
+			}
+		
+		}
+	}
